@@ -1,0 +1,69 @@
+<div class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h1>
+					Sign up<br> <small> for FORGEStore</small>
+				</h1>
+
+				<form name="form" class="form-horizontal" role="form" ng-submit="registerNewBakerUser()" id="addUserForm">
+					<input type="hidden" name="userid" value="" />
+					<div class="form-group">
+						<label for="bakeruser.name" class="col-sm-2 control-label">Name Lastname</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="bakeruser.name" value="" placeholder="name..." />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">Username</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="bakeruser.username" value=""
+								placeholder="username..." />
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">Password</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control"  ng-model="bakeruser.password" value="" equals="{{retypepassword}}" placeholder="password..."/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="confirm_password" class="col-sm-2 control-label">Re-type Password</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" name='confirm_password'  ng-model="retypepassword" value="" equals="{{bakeruser.password}}" placeholder='confirm password' />
+						</div>
+					</div>
+					
+					<div class="form-group" ng-show="form.confirm_password.$error.passwordVerify" >
+						<label for="email" class="col-sm-2 control-label"></label>
+						<div  class="col-sm-10 alert alert-danger">
+						Fields are not equal!
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="email" class="col-sm-2 control-label">e-mail</label>
+						<div class="col-sm-10">
+							<input  type="email" class="form-control"  ng-model="bakeruser.email" value="" placeholder="email"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="organization" class="col-sm-2 control-label">Organization</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model="bakeruser.organization" value="" />
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-default" type="submit" value="Register" />
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,66 @@
+<div class="page-header">
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-3 col-sm-3 col-md-2 col-lg-2 ">
+				<ul class="nav nav-pills nav-stacked">
+					<li ng-class="{'active': isNoneSelected(), 'shadowed-dark': isNoneSelected(category) }">
+							<a ng-click="filterCategory(-1)"> <span
+							class="badge pull-right">{{widgetsTotalNumber}}</span> All
+					</a></li>
+					<li ng-class="{'active': isActive(category), 'shadowed-dark': isActive(category) }" 
+						ng-repeat="category in categories "><a ng-click="filterCategory(category)"> <span
+							class="badge pull-right">{{category.widgetscount}}</span>{{category.name}}
+					</a></li>
+				</ul>
+
+			</div>
+			<div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+				<div class="jumbotron shadowed">
+					<h2>FORGE Widgets</h2>
+					<p>Widgets are micro-application performing a dedicated task. FORGE offers a number of widgets that will expose
+					 FIRE facilities to learners and educators. These widgets function as standalone learning applications that will be 
+					 embedded inside interactive courses!</p>
+				</div>
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ></div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+					<input  type="text" class="form-control"  ng-model="search.name" placeholder="Filter widgets..." />
+					<h1></h1>
+				</div>
+					
+				<div class="row example-animate-container" >
+					
+					<div ng-repeat="widget in widgets | filter:search" class="col-xs-12 col-sm-12 col-md-6 col-lg-4 appTile animate-repeat">
+						
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 appTitle">
+						{{widget.name}}
+						<p><small>by {{widget.owner.username}}, {{widget.owner.organization}}</small></p>
+						</div>
+						<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 tileimg" style="background: url({{widget.iconsrc}}) no-repeat center center;">
+						</div>
+						<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">							
+							<small>Version: {{widget.version}}</small>
+							<br>
+							<small><span ng-repeat="wcat in widget.categories">
+							<span class="label label-info">{{wcat.name}}</span>&nbsp;&nbsp;</span></small>
+							<br>
+							<br>
+							<p>{{widget.shortDescription}}</p>
+							<p>
+								<a class="btn btn-default" href="#/widget_view/{{widget.id}}" role="button">View details</a>
+							</p>
+						</div>
+					</div>
+					
+				</div>	
+				
+				<div class="col-12 col-sm-12 col-lg-12">	
+					<li class="animate-repeat" ng-if="results.length == 0">
+					<strong>No results found...</strong></li>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

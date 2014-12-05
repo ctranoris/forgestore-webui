@@ -1,0 +1,95 @@
+<div class="page-header" >
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h1 id="headerTitle">Add new Widget</h1>
+				<h3>by user: {{widget.owner.username}}</h3>
+
+				<form class="form-horizontal" name="form" role="form" ng-submit="submitNewWidget()" id="addWidgetForm">
+					<div class="form-group">
+						<label for="widget.name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="widget.name" value="" placeholder="name..." />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="widget.url" class="col-sm-2 control-label">URL</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="widget.url" value="" placeholder="url of service providing the widget" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="widget.version" class="col-sm-2 control-label">Version</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="widget.version" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="widget.shortDescription" class="col-sm-2 control-label">Teaser</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="widget.teaser" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="widget.longDescription" class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="widget.longDescription" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="widget.uploadedAppIcon" class="col-sm-2 control-label">Logo</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" name="uploadedWidgetIcon"  file-model="widget.uploadedWidgetIcon" placeholder="" />
+							<p class="help-block">Select logo image</p>
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="widget.uploadedWidgetFile" class="col-sm-2 control-label">Package File (.tar.gz)</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" name="uploadedWidgetFile"  file-model="widget.uploadedWidgetFile" placeholder="" />
+							<p class="help-block">Select file (.tar.gz)</p>
+							
+						</div>
+					</div>
+					
+				
+					
+					<div class="form-group">
+						<label for="widget.category" class="col-sm-2 control-label">Category ( <span ng-repeat="wcat in widget.categories">{{wcat.name}} </span> )</label>
+						<div class="col-sm-10">
+							<select multiple class="form-control" ng-model="widget.categories" ng-options="cat.name for cat in categories" >
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="widget.screenshots" class="col-sm-2 control-label">Screenshots</label>
+						<div class="col-sm-10">
+							<input type="file" file-upload multiple/>
+							<p class="help-block">Select screenshot images</p>
+						    
+						    <div class="col-sm-3" ng-repeat="shot in screenshotimages">
+						    	<div class="col-sm-12 screenshottile">
+								    <div class="col-sm-12" style="word-wrap: break-word;"><p>{{shot.file.name}}</p></div>
+								    <div class="col-sm-12"> <img ng-if="image" src="{{shot.img}}" alt="" width="100%"></div>
+							    </div>
+						        
+						    </div>
+						    
+						    
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-default" type="submit" value="Save" />
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>

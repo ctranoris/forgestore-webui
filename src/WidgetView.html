@@ -1,0 +1,51 @@
+<div class="page-header" >
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 appIconMainScreen" >
+				<h1></h1>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 tileimg" style="background: url({{widget.iconsrc}}) no-repeat center center;">
+				</div>
+				<h4>Version: {{widget.version}}</h4>
+				
+			</div>
+			<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+				<h1 id="headerTitle">{{widget.name}} </h1>
+				<p><span ng-repeat="cat in widget.categories"><span class="label label-info">{{cat.name}}</span>&nbsp;&nbsp;</span></p>
+				
+				<h3>{{widget.shortDescription}}</h3>
+				<p>Author: <strong>{{widget.owner.username}}</strong></p>
+				<p>Organization: <strong>{{widget.owner.organization}}</strong></p>
+				<p>URL: <strong>{{widget.url}}</strong></p>
+				<p>Date created: <strong>{{widget.dateCreated| date:'medium'}}</strong></p>
+				<p>Last update: <strong>{{widget.dateUpdated | date:'medium' }}</strong></p>
+				<p>UUID: <strong>{{widget.uuid}}</strong></p>
+				<p>{{widget.longDescription}}</p>
+				
+				<!-- slider container -->
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					    <div class="slider">
+					
+					        <!-- enumerate all photos -->
+					        <img ng-repeat="shot in screenshotimages" class="slide" ng-swipe-right="showPrev()" 
+					        			ng-swipe-left="showNext()" ng-show="isActive($index)" ng-src="{{shot}}" />
+					
+					        <!-- prev / next controls -->
+					        <a class="arrow prev" ng-click="showPrev()"></a>
+					        <a class="arrow next" ng-click="showNext()"></a>
+					
+					        <!-- extra navigation controls -->
+					        <ul class="slidernav">
+					            <li ng-repeat="shot in screenshotimages" ng-class="{'active':isActive($index)}">
+					                <img src="{{shot}}" alt="{{shot}}" title="{{shot}}" ng-click="showPhoto($index);" />
+					            </li>
+					        </ul>
+					
+					    </div>
+				</div>
+				
+
+			</div>
+		</div>
+	</div>
+</div>

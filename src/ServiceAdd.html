@@ -1,0 +1,72 @@
+<div class="page-header" >
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h1 id="headerTitle">Add new Service</h1>
+				<h3>by user: {{service.owner.username}}</h3>
+
+				<form class="form-horizontal" name="form" role="form" ng-submit="submitNewService()" id="addServiceForm">
+					<div class="form-group">
+						<label for="service.name" class="col-sm-2 control-label">Name</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="service.name" value="" placeholder="name..." />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="service.version" class="col-sm-2 control-label">Version</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="service.version" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="service.shortDescription" class="col-sm-2 control-label">Teaser</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="service.teaser" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="service.longDescription" class="col-sm-2 control-label">Description</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control"  ng-model="service.longDescription" value="" placeholder="" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="service.uploadedAppIcon" class="col-sm-2 control-label">Logo</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" name="uploadedServiceIcon"  file-model="service.uploadedServiceIcon" placeholder="" />
+							<p class="help-block">Select logo image</p>
+							
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="service.uploadedServiceFile" class="col-sm-2 control-label">Package File (.tar.gz)</label>
+						<div class="col-sm-10">
+							<input type="file" class="form-control" name="uploadedServiceFile"  file-model="service.uploadedServiceFile" placeholder="" />
+							<p class="help-block">Select file (.tar.gz)</p>
+							
+						</div>
+					</div>
+					
+				
+					
+					<div class="form-group">
+						<label for="app.category" class="col-sm-2 control-label">Category ( <span ng-repeat="servicecat in service.categories">{{servicecat.name}} </span> )</label>
+						<div class="col-sm-10">
+							<select multiple class="form-control" ng-model="service.categories" ng-options="cat.name for cat in categories" >
+							</select>
+						</div>
+					</div>
+					
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input class="btn btn-default" type="submit" value="Save" />
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>

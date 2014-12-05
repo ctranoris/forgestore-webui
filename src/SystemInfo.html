@@ -1,0 +1,23 @@
+<div class="page-header" >
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<h1>System Info</h1>
+				<h3>View and manage system Information</h3>
+				<br>
+				<table id="grid1" tr-ng-grid="" class="propertiesGrid" items="properties"
+					fields="['id', 'name', 'value' ]">
+					<tbody>
+						<tr>
+							<td nowrap="nowrap">
+								<a class="btn btn-primary" ng-href="#/edit_systeminfo/{{gridDisplayItem.id}}"><i class="fa fa-pencil-square-o "></i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+</div>
