@@ -1,16 +1,5 @@
 var appServices = angular.module('forgestorewebapp.services',[]);
 
-
-appServices.factory('APIEndPointService', function() {
-	  return {	      
-	      //APIURL: "http://www.forgestore.eu:443/fsapi/",
-		  //WEBURL: "http://83.212.106.218/bakertest/forgestore/",
-		  APIURL: "http://localhost:13000/fsapi/",
-		  WEBURL: "http://127.0.0.1:13000/forgestore/"
-	  };
-});
-
-
 	
 //FStoreUser Resource
 appServices.factory('FStoreUser', function($resource, APIEndPointService) {

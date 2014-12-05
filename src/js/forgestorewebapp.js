@@ -1,7 +1,9 @@
 var app = angular.module('forgestorewebapp', [   'ngCookies', 'ngResource', 'ngRoute', 
                                          'trNgGrid', 'forgestorewebapp.controllers', 
                                          'forgestorewebapp_course.controllers', 
-                                         'forgestorewebapp.services', 'ngDialog',
+                                         'forgestorewebapp.services', 
+                                         'forgestorewebapp.config',
+                                         'ngDialog',
                                          'angular-loading-bar', 'ngAnimate']);
 
 app.config(function($routeProvider, $locationProvider, $anchorScrollProvider, cfpLoadingBarProvider) {
