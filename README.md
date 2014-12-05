@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/ctranoris/forgestore.svg?branch=master)](https://travis-ci.org/ctranoris/forgestore)
 
 FORGEStore Web front UI for FORGEStore Web Service
 ==========
