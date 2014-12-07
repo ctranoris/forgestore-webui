@@ -1,11 +1,11 @@
 var appControllers = angular.module('forgestorewebapp.controllers',[]) 
 
 
-appControllers.controller('FeaturedWidgets', ['$scope','$window','$log', 'Widget', 'CategoryBrowse', '$filter',
-                                                     	function($scope, $window, $log, Widget, CategoryBrowse,$filter ) {
+appControllers.controller('FeaturedWidgets', ['$scope','$window','$log', 'WidgetBrowse', 'CategoryBrowse', '$filter',
+                                                     	function($scope, $window, $log, WidgetBrowse, CategoryBrowse,$filter ) {
                          	
         	var orderBy = $filter('orderBy');
-         	$scope.widgets = Widget.query(function() {
+         	$scope.widgets = WidgetBrowse.query(function() {
         		    $scope.widgets = orderBy($scope.widgets, 'name', true);
          		  }); 
 }]);

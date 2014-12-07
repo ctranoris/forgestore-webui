@@ -103,7 +103,7 @@ app.config(function($routeProvider, $locationProvider, $anchorScrollProvider, cf
 
 app.controller('forgestoreMainCtrl', function($scope, FStoreUser, $log, $location) {
 	$log.debug('inside forgestoreMainCtrl controller');
-	$scope.forgestorevesrion = '20141114_trunk';
+	$scope.forgestorevesrion = '20141212_trunk';
 	$scope.location = $location;
 });
 
