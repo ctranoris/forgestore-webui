@@ -36,14 +36,14 @@ appControllers.controller('CourseListController', ['$scope','$window','$log', 'C
 
 
 appControllers.controller('CourseAddController', function($scope, $location,
-		Course, FStoreUser, $rootScope, $http,formDataObject, Category, $filter, APIEndPointService) {
+		Course, FStoreUser, $rootScope, $http,formDataObject, CategoryBrowse, $filter, APIEndPointService) {
 
 	
 	$scope.course = new Course();
 	$scope.course.owner = $rootScope.loggedinfstoreuser;//FStoreUser.get({id:$rootScope.loggedinfstoreuser.id});
 	 
 	var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		
 	}); 
@@ -63,12 +63,12 @@ appControllers.controller('CourseAddController', function($scope, $location,
 		 
 		return $http({
 			method : 'POST',
-			url : APIEndPointService.APIURL+'services/api/repo/users/'+$scope.course.owner.id+'/courses/',
+			url : APIEndPointService.APIURL+'services/api/repo/admin/courses/',
 			headers : {
 				'Content-Type' : 'multipart/form-data'
 			},
 			data : {
-				coursename: $scope.course.name,
+				prodname: $scope.course.name,
 				shortDescription: $scope.course.teaser,
 				longDescription: $scope.course.longDescription,
 				version: $scope.course.version,
@@ -87,8 +87,8 @@ appControllers.controller('CourseAddController', function($scope, $location,
 
 
 appControllers.controller('CourseEditController', ['$scope', '$route', '$routeParams', '$location', 'Course', '$anchorScroll',
-                                                '$http', 'formDataObject', 'cfpLoadingBar', 'Category', '$filter', 'APIEndPointService',
-     function( $scope, $route, $routeParams, $location, Course, $anchorScroll, $http,formDataObject, cfpLoadingBar, Category, $filter, APIEndPointService){
+                                                '$http', 'formDataObject', 'cfpLoadingBar', 'CategoryBrowse', '$filter', 'APIEndPointService',
+     function( $scope, $route, $routeParams, $location, Course, $anchorScroll, $http,formDataObject, cfpLoadingBar, CategoryBrowse, $filter, APIEndPointService){
 
 
 	
@@ -101,13 +101,13 @@ appControllers.controller('CourseEditController', ['$scope', '$route', '$routePa
 		 
 			return $http({
 				method : 'PUT',
-				url : APIEndPointService.APIURL+'services/api/repo/courses/'+$routeParams.id,
+				url : APIEndPointService.APIURL+'services/api/repo/admin/courses/'+$routeParams.id,
 				headers : {
 					'Content-Type' : 'multipart/form-data'
 				},
 				data : {
 					userid: $scope.course.owner.id,
-					coursename: $scope.course.name,
+					prodname: $scope.course.name,
 					courseid: $scope.course.id,
 					courseuuid: $scope.course.uuid,
 					shortDescription: $scope.course.shortDescription,
@@ -156,7 +156,7 @@ appControllers.controller('CourseEditController', ['$scope', '$route', '$routePa
     };
 
     var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		$scope.loadCourse($scope.categories);
 	}); 
@@ -164,21 +164,21 @@ appControllers.controller('CourseEditController', ['$scope', '$route', '$routePa
 }]);
 
 
-appControllers.controller('CourseViewController', ['$scope', '$route', '$routeParams', '$location', 'Course',
-                                                 function( $scope, $route, $routeParams, $location, Course ){
-    $scope.course=Course.get({id:$routeParams.id});
+appControllers.controller('CourseViewController', ['$scope', '$route', '$routeParams', '$location', 'CourseBrowse',
+                                                 function( $scope, $route, $routeParams, $location, CourseBrowse ){
+    $scope.course=CourseBrowse.get({id:$routeParams.id});
 
 }]);
 
 
-appControllers.controller('CoursesMarketplaceController', ['$scope','$window','$log', 'Course', 'Category', '$filter',
-                                                     	function($scope, $window, $log, Course, Category,$filter ) {
+appControllers.controller('CoursesMarketplaceController', ['$scope','$window','$log', 'CourseBrowse', 'CategoryBrowse', '$filter',
+                                                     	function($scope, $window, $log, CourseBrowse, CategoryBrowse,$filter ) {
                          	
         	var orderBy = $filter('orderBy');
-        	$scope.categories = Category.query(function() {
+        	$scope.categories = CategoryBrowse.query(function() {
         		    $scope.categories = orderBy($scope.categories, 'name', false);
         	});
-         	$scope.courses = Course.query(function() {
+         	$scope.courses = CourseBrowse.query(function() {
          		    //console.log($scope.apps);
          		    $scope.coursesTotalNumber = $scope.courses.length;
         		    $scope.courses = orderBy($scope.courses, 'name', false);
@@ -196,7 +196,7 @@ appControllers.controller('CoursesMarketplaceController', ['$scope','$window','$
          				$scope.selectedcategory = null;
          			}
 
-        			$scope.courses = Course.query({categoryid: category.id}, function() {
+        			$scope.courses = CourseBrowse.query({categoryid: category.id}, function() {
         	 		    //console.log($scope.apps);
         			    $scope.courses = orderBy($scope.courses, 'name', false);
         	 	});

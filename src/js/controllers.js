@@ -1,8 +1,8 @@
 var appControllers = angular.module('forgestorewebapp.controllers',[]) 
 
 
-appControllers.controller('FeaturedWidgets', ['$scope','$window','$log', 'Widget', 'Category', '$filter',
-                                                     	function($scope, $window, $log, Widget, Category,$filter ) {
+appControllers.controller('FeaturedWidgets', ['$scope','$window','$log', 'Widget', 'CategoryBrowse', '$filter',
+                                                     	function($scope, $window, $log, Widget, CategoryBrowse,$filter ) {
                          	
         	var orderBy = $filter('orderBy');
          	$scope.widgets = Widget.query(function() {
@@ -341,14 +341,14 @@ appControllers.controller('ServiceListController', ['$scope','$window','$log', '
 
 
 appControllers.controller('ServiceAddController', function($scope, $location,
-		ServiceMetadata, FStoreUser, $rootScope, $http,formDataObject, Category, $filter, APIEndPointService) {
+		ServiceMetadata, FStoreUser, $rootScope, $http,formDataObject, CategoryBrowse, $filter, APIEndPointService) {
 
 	
 	$scope.service = new ServiceMetadata();
 	$scope.service.owner = $rootScope.loggedinfstoreuser;//FStoreUser.get({id:$rootScope.loggedinfstoreuser.id});
 	 
 	var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		
 	}); 
@@ -368,7 +368,7 @@ appControllers.controller('ServiceAddController', function($scope, $location,
 		 
 		return $http({
 			method : 'POST',
-			url : APIEndPointService.APIURL+'services/api/repo/users/'+$scope.service.owner.id+'/fireadapters/',
+			url : APIEndPointService.APIURL+'services/api/repo/admin/fireadapters/',
 			headers : {
 				'Content-Type' : 'multipart/form-data'
 			},
@@ -393,8 +393,8 @@ appControllers.controller('ServiceAddController', function($scope, $location,
 
 
 appControllers.controller('ServiceEditController', ['$scope', '$route', '$routeParams', '$location', 'ServiceMetadata', '$anchorScroll',
-                                                '$http', 'formDataObject', 'cfpLoadingBar', 'Category', '$filter', 'APIEndPointService',
-     function( $scope, $route, $routeParams, $location, ServiceMetadata, $anchorScroll, $http,formDataObject, cfpLoadingBar, Category, $filter, APIEndPointService){
+                                                '$http', 'formDataObject', 'cfpLoadingBar', 'CategoryBrowse', '$filter', 'APIEndPointService',
+     function( $scope, $route, $routeParams, $location, ServiceMetadata, $anchorScroll, $http,formDataObject, cfpLoadingBar, CategoryBrowse, $filter, APIEndPointService){
 
 
 	
@@ -407,7 +407,7 @@ appControllers.controller('ServiceEditController', ['$scope', '$route', '$routeP
 		 
 			return $http({
 				method : 'PUT',
-				url : APIEndPointService.APIURL+'services/api/repo/fireadapters/'+$routeParams.id,
+				url : APIEndPointService.APIURL+'services/api/repo/admin/fireadapters/'+$routeParams.id,
 				headers : {
 					'Content-Type' : 'multipart/form-data'
 				},
@@ -461,7 +461,7 @@ appControllers.controller('ServiceEditController', ['$scope', '$route', '$routeP
     };
 
     var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		$scope.loadService($scope.categories);
 	}); 
@@ -476,15 +476,15 @@ appControllers.controller('ServiceViewController', ['$scope', '$route', '$routeP
 }]);
 
 
-appControllers.controller('ServicesMarketplaceController', ['$scope','$window','$log', 'ServiceMetadata', 'Category', '$filter',
-                                                     	function($scope, $window, $log, ServiceMetadata, Category,$filter ) {
+appControllers.controller('ServicesMarketplaceController', ['$scope','$window','$log', 'ServiceMetadataBrowse', 'CategoryBrowse', '$filter',
+                                                     	function($scope, $window, $log, ServiceMetadataBrowse, CategoryBrowse,$filter ) {
                          	
         	var orderBy = $filter('orderBy');
-        	$scope.categories = Category.query(function() {
+        	$scope.categories = CategoryBrowse.query(function() {
         		    //console.log($scope.apps);
         		    $scope.categories = orderBy($scope.categories, 'name', false);
         	});
-         	$scope.services = ServiceMetadata.query(function() {
+         	$scope.services = ServiceMetadataBrowse.query(function() {
          		    //console.log($scope.apps);
          		    $scope.servicesTotalNumber = $scope.services.length;
         		    $scope.services = orderBy($scope.services, 'name', false);
@@ -503,7 +503,7 @@ appControllers.controller('ServicesMarketplaceController', ['$scope','$window','
          			}
 
         			//$scope.apps = ApplicationMetadata.query();
-        			$scope.services = ServiceMetadata.query({categoryid: category.id}, function() {
+        			$scope.services = ServiceMetadataBrowse.query({categoryid: category.id}, function() {
         	 		    //console.log($scope.apps);
         			    $scope.services = orderBy($scope.services, 'name', false);
         	 	});
@@ -562,14 +562,14 @@ appControllers.controller('WidgetListController', ['$scope','$window','$log', 'W
 
 
 appControllers.controller('WidgetAddController', function($scope, $location,
-		Widget, FStoreUser, $rootScope, $http,formDataObject, Category, $filter, APIEndPointService) {
+		Widget, FStoreUser, $rootScope, $http,formDataObject, CategoryBrowse, $filter, APIEndPointService) {
 
 	
 	$scope.widget = new Widget();
 	$scope.widget.owner = $rootScope.loggedinfstoreuser;//FStoreUser.get({id:$rootScope.loggedinfstoreuser.id});
 	 
 	var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		
 	}); 
@@ -630,7 +630,7 @@ appControllers.controller('WidgetAddController', function($scope, $location,
 		 
 		return $http({
 			method : 'POST',
-			url : APIEndPointService.APIURL+'services/api/repo/users/'+$scope.widget.owner.id+'/widgets/',
+			url : APIEndPointService.APIURL+'services/api/repo/admin/widgets/',
 			headers : {
 				'Content-Type' : undefined
 			},
@@ -677,8 +677,8 @@ appControllers.controller('WidgetAddController', function($scope, $location,
 
 
 appControllers.controller('WidgetEditController', ['$scope', '$route', '$routeParams', '$location', 'Widget', '$anchorScroll',
-                                                '$http', 'formDataObject', 'cfpLoadingBar', 'Category', '$filter','APIEndPointService',
-     function( $scope, $route, $routeParams, $location, Widget, $anchorScroll, $http,formDataObject, cfpLoadingBar, Category, $filter,APIEndPointService){
+                                                '$http', 'formDataObject', 'cfpLoadingBar', 'CategoryBrowse', '$filter','APIEndPointService',
+     function( $scope, $route, $routeParams, $location, Widget, $anchorScroll, $http,formDataObject, cfpLoadingBar, CategoryBrowse, $filter,APIEndPointService){
 
 
 	
@@ -691,7 +691,7 @@ appControllers.controller('WidgetEditController', ['$scope', '$route', '$routePa
 		 
 			return $http({
 				method : 'PUT',
-				url : APIEndPointService.APIURL+'services/api/repo/widgets/'+$routeParams.id,
+				url : APIEndPointService.APIURL+'services/api/repo/admin/widgets/'+$routeParams.id,
 				headers : {
 					'Content-Type' : undefined
 				},
@@ -767,7 +767,7 @@ appControllers.controller('WidgetEditController', ['$scope', '$route', '$routePa
     };
 
     var orderBy = $filter('orderBy');
-	$scope.categories = Category.query(function() {
+	$scope.categories = CategoryBrowse.query(function() {
 		$scope.categories = orderBy($scope.categories, 'name', false);
 		$scope.loadWidget($scope.categories);
 	}); 
@@ -817,9 +817,9 @@ appControllers.controller('WidgetEditController', ['$scope', '$route', '$routePa
 }]);
 
 
-appControllers.controller('WidgetViewController', ['$scope', '$route', '$routeParams', '$location', 'Widget',
-                                                 function( $scope, $route, $routeParams, $location, Widget ){
-    $scope.widget=Widget.get({id:$routeParams.id}, function() {
+appControllers.controller('WidgetViewController', ['$scope', '$route', '$routeParams', '$location', 'WidgetBrowse',
+                                                 function( $scope, $route, $routeParams, $location, WidgetBrowse ){
+    $scope.widget=WidgetBrowse.get({id:$routeParams.id}, function() {
         //console.log("WILL GET ApplicationMetadata with ID "+$routeParams.id);
         var shots = $scope.widget.screenshots;
         $scope.screenshotimages = shots.split(",") ;    	
@@ -854,14 +854,14 @@ appControllers.controller('WidgetViewController', ['$scope', '$route', '$routePa
 }]);
 
 
-appControllers.controller('WidgetsMarketplaceController', ['$scope','$window','$log', 'Widget', 'Category', '$filter',
-                                                     	function($scope, $window, $log, Widget, Category,$filter ) {
+appControllers.controller('WidgetsMarketplaceController', ['$scope','$window','$log', 'WidgetBrowse', 'CategoryBrowse', '$filter',
+                                                     	function($scope, $window, $log, WidgetBrowse, CategoryBrowse,$filter ) {
                          	
         	var orderBy = $filter('orderBy');
-        	$scope.categories = Category.query(function() {
+        	$scope.categories = CategoryBrowse.query(function() {
         		    $scope.categories = orderBy($scope.categories, 'name', false);
         	});
-         	$scope.widgets = Widget.query(function() {
+         	$scope.widgets = WidgetBrowse.query(function() {
          		    //console.log($scope.apps);
          		    $scope.widgetsTotalNumber = $scope.widgets.length;
         		    $scope.widgets = orderBy($scope.widgets, 'name', false);
@@ -879,7 +879,7 @@ appControllers.controller('WidgetsMarketplaceController', ['$scope','$window','$
          				$scope.selectedcategory = null;
          			}
 
-        			$scope.widgets = Widget.query({categoryid: category.id}, function() {
+        			$scope.widgets = WidgetBrowse.query({categoryid: category.id}, function() {
         	 		    //console.log($scope.apps);
         			    $scope.widgets = orderBy($scope.widgets, 'name', false);
         	 	});
