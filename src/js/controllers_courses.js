@@ -72,8 +72,8 @@ appControllers.controller('CourseAddController', function($scope, $location,
 				shortDescription: $scope.course.teaser,
 				longDescription: $scope.course.longDescription,
 				version: $scope.course.version,
-				uploadedCourseIcon: $scope.course.uploadedCourseIcon,
-				uploadedCourseFile: $scope.course.uploadedCourseFile,
+				prodIcon: $scope.course.uploadedCourseIcon,
+				prodFile: $scope.course.uploadedCourseFile,
 				categories: catidsCommaSeparated,
 				//file : $scope.file
 			},
@@ -114,8 +114,8 @@ appControllers.controller('CourseEditController', ['$scope', '$route', '$routePa
 					longDescription: $scope.course.longDescription,
 					version: $scope.course.version,
 					categories: catidsCommaSeparated,
-					uploadedCourseIcon: $scope.course.uploadedCourseIcon,
-					uploadedCourseFile: $scope.course.uploadedCourseFile,
+					prodIcon: $scope.course.uploadedCourseIcon,
+					prodFile: $scope.course.uploadedCourseFile,
 					//file : $scope.file
 				},
 				transformRequest : formDataObject
