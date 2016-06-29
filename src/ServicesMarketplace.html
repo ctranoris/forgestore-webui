@@ -9,7 +9,7 @@
 							class="badge pull-right">{{servicesTotalNumber}}</span> All
 					</a></li>
 					<li ng-class="{'active': isActive(category), 'shadowed-dark': isActive(category) }" 
-						ng-repeat="category in categories "><a ng-click="filterCategory(category)"> <span
+						ng-repeat="category in categories " ng-if="category.fireadapterscount > 0"><a ng-click="filterCategory(category)"> <span
 							class="badge pull-right">{{category.fireadapterscount}}</span>{{category.name}}
 					</a></li>
 				</ul>
